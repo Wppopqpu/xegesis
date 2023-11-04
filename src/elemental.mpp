@@ -3,21 +3,27 @@ module;
 export module xegesis.elemental;
 namespace xegesis
 {
-	export using InitFlag = Uint32;
 	export namespace init_flags
 	{
-		constexpr InitFlag timer { SDL_INIT_TIMER };
-		constexpr InitFlag audio { SDL_INIT_AUDIO };
-		//Auto inits events subsystem.
-		constexpr InitFlag video { SDL_INIT_VIDEO };
-		//Auto inits events subsystem.
-		constexpr InitFlag joystick { SDL_INIT_JOYSTICK };
-		constexpr InitFlag haptic { SDL_INIT_HAPTIC }; //Force feedback.
-		//Auto inits joystick.
-		constexpr InitFlag gameController { SDL_INIT_GAMECONTROLLER };
-		constexpr InitFlag events { SDL_INIT_EVENTS };
-		constexpr InitFlag all { SDL_INIT_EVERYTHING };
+	  //To enable implicit casting to integers,
+	  //we do not use 'enum class'.
+    enum: Uint32 Flag
+		{
+		  timer = SDL_INIT_TIMER,
+		  audio = SDL_INIT_AUDIO,
+		  //Auto inits events subsystem.
+		  video = SDL_INIT_VIDEO,
+		  //Auto inits events subsystem.
+		  joystick = SDL_INIT_JOYSTICK,
+		  //Force feedback.
+		  haptic = SDL_INIT_HAPTIC,
+		  //Auto inits joystick.
+	    gameController = SDL_INIT_GAMECONTROLLER,
+		  events = SDL_INIT_EVENTS,
+		  all = SDL_INIT_EVERYTHING
+    };
 	}
+	export using InitFlag = init_flags::Flag;
 
 	//Inits & exits the library.
 	//Should be used once.
@@ -38,8 +44,8 @@ namespace xegesis
 	};
 
 	//This class is used on internal purposes.
-	//To declare static one in your class if need be.
-	class InitFlagAdder final
+	//To declare static one if need be.
+	export class InitFlagAdder final
 	{
 		public:
 			InitFlagAdder(const InitFlag flag);

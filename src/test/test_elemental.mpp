@@ -1,0 +1,14 @@
+module;
+#include <co/unitest.h>
+export module test:elemental;
+import xegesis;
+
+DEF_TEST(elemental) {
+	DEF_case(init_application) {
+		//IF an application object is created and destroyed.
+		xegesis::Application { xegesis::init_flags::all };
+		//THEN nothing happens.
+	}
+}
+
+

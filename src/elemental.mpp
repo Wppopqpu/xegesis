@@ -1,0 +1,48 @@
+module;
+#include <SDL.h>
+export module xegesis.elemental;
+namespace xegesis
+{
+	export using InitFlag = Uint32;
+	export namespace init_flags
+	{
+		constexpr InitFlag timer { SDL_INIT_TIMER };
+		constexpr InitFlag audio { SDL_INIT_AUDIO };
+		//Auto inits events subsystem.
+		constexpr InitFlag video { SDL_INIT_VIDEO };
+		//Auto inits events subsystem.
+		constexpr InitFlag joystick { SDL_INIT_JOYSTICK };
+		constexpr InitFlag haptic { SDL_INIT_HAPTIC }; //Force feedback.
+		//Auto inits joystick.
+		constexpr InitFlag gameController { SDL_INIT_GAMECONTROLLER };
+		constexpr InitFlag events { SDL_INIT_EVENTS };
+		constexpr InitFlag all { SDL_INIT_EVERYTHING };
+	}
+
+	//Inits & exits the library.
+	//Should be used once.
+	export class Application final
+	{
+		public:
+			
+			//Init sdl with the flag (see below).
+			Application(const InitFlag flag = ms_flag);
+			~Application();
+
+			static void addFlag(const InitFlag flag);
+
+
+		private:
+			static InitFlag ms_flag;
+
+	};
+
+	//This class is used on internal purposes.
+	//To declare static one in your class if need be.
+	class InitFlagAdder final
+	{
+		public:
+			InitFlagAdder(const InitFlag flag);
+	};
+}//Namesace.
+

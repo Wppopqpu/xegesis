@@ -1,8 +1,19 @@
 add_rules("mode.debug", "mode.release")
+set_languages("c++20")
+set_policy("build.c++.modules", true)
+add_requires("libsdl", "coost")
 
 target("xegesis")
-    set_kind("binary")
+	add_packages("libsdl")
+    set_kind("static")
     add_files("src/*.cpp")
+	add_files("src/*.mpp", { install = true })
+
+target("test")
+	add_packages("coost")
+	set_kind("binary")
+	add_deps("xegesis")
+	add_files("src/test/*.cpp", "src/test/*.mpp")
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

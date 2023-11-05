@@ -5,23 +5,23 @@ namespace xegesis
 {
 	export namespace init_flags
 	{
-	  //To enable implicit casting to integers,
-	  //we do not use 'enum class'.
-    enum: Uint32 Flag
+		//To enable implicit casting to integers,
+		//we do not use 'enum class'.
+		enum: Uint32 Flag
 		{
-		  timer = SDL_INIT_TIMER,
-		  audio = SDL_INIT_AUDIO,
-		  //Auto inits events subsystem.
-		  video = SDL_INIT_VIDEO,
-		  //Auto inits events subsystem.
-		  joystick = SDL_INIT_JOYSTICK,
-		  //Force feedback.
-		  haptic = SDL_INIT_HAPTIC,
-		  //Auto inits joystick.
-	    gameController = SDL_INIT_GAMECONTROLLER,
-		  events = SDL_INIT_EVENTS,
-		  all = SDL_INIT_EVERYTHING
-    };
+			timer = SDL_INIT_TIMER,
+			audio = SDL_INIT_AUDIO,
+			//Auto inits events subsystem.
+			video = SDL_INIT_VIDEO,
+			//Auto inits events subsystem.
+			joystick = SDL_INIT_JOYSTICK,
+			//Force feedback.
+			haptic = SDL_INIT_HAPTIC,
+			//Auto inits joystick.
+			gameController = SDL_INIT_GAMECONTROLLER,
+			events = SDL_INIT_EVENTS,
+			all = SDL_INIT_EVERYTHING
+		};
 	}
 	export using InitFlag = init_flags::Flag;
 
